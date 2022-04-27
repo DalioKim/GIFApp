@@ -18,11 +18,24 @@ class SearchViewController: UIViewController {
         return collectionView
     }()
     
+    private var viewModel: DefaultSearchViewModel
+    
+    // MARK: - Init
+    
+    init(viewModel: DefaultSearchViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupViews()
         bindSearchBar()
+        bindViewModel()
     }
     
     private func setupViews() {
@@ -49,15 +62,21 @@ class SearchViewController: UIViewController {
         searchBar.delegate = self
         searchBar.sizeToFit()
     }
+    
+    private func bindViewModel() {
+        self.viewModel.delegate = self
+    }
 }
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text, !searchText.isEmpty else { return }
-        print(searchText)
+        viewModel.search(searchText)
     }
+}
 
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        print("cancel")
+extension SearchViewController: SearchViewModelDelegate {
+    func didLoadData() {
+        print("debug: \(self.viewModel.cellModels)")
     }
 }
