@@ -17,6 +17,8 @@
 		E3D26BEC281917F60019CFDE /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D26BEB281917F60019CFDE /* API.swift */; };
 		E3D26BEE2819185F0019CFDE /* APITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D26BED2819185F0019CFDE /* APITarget.swift */; };
 		E3D26BF1281922F80019CFDE /* GifResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D26BF0281922F80019CFDE /* GifResponse.swift */; };
+		E3D26BF32819612B0019CFDE /* SearchItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D26BF22819612B0019CFDE /* SearchItemCell.swift */; };
+		E3D26BF8281967290019CFDE /* NSObject+ClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D26BF7281967290019CFDE /* NSObject+ClassName.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		E3D26BEB281917F60019CFDE /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		E3D26BED2819185F0019CFDE /* APITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITarget.swift; sourceTree = "<group>"; };
 		E3D26BF0281922F80019CFDE /* GifResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifResponse.swift; sourceTree = "<group>"; };
+		E3D26BF22819612B0019CFDE /* SearchItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemCell.swift; sourceTree = "<group>"; };
+		E3D26BF7281967290019CFDE /* NSObject+ClassName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+ClassName.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,7 @@
 				E3D26BE02818D6D80019CFDE /* Application */,
 				E3D26BE32818D6EF0019CFDE /* Network */,
 				E3D26BE22818D6E90019CFDE /* Domain */,
+				E3D26BF4281966D30019CFDE /* Helper */,
 				E3D26BE12818D6E30019CFDE /* Common */,
 				E3D26BE42818D6F70019CFDE /* Resources */,
 			);
@@ -118,6 +123,7 @@
 				E3D26BE52818D73E0019CFDE /* SearchViewController.swift */,
 				E3D26BE72818D7540019CFDE /* SearchViewModel.swift */,
 				E3D26BE92818D76C0019CFDE /* SearchItemCellModel.swift */,
+				E3D26BF22819612B0019CFDE /* SearchItemCell.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -146,6 +152,30 @@
 				E3D26BF0281922F80019CFDE /* GifResponse.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		E3D26BF4281966D30019CFDE /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				E3D26BF5281967140019CFDE /* Extensions */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		E3D26BF5281967140019CFDE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E3D26BF62819671B0019CFDE /* Foundation */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E3D26BF62819671B0019CFDE /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				E3D26BF7281967290019CFDE /* NSObject+ClassName.swift */,
+			);
+			path = Foundation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,9 +294,11 @@
 				E3D26BEA2818D76C0019CFDE /* SearchItemCellModel.swift in Sources */,
 				E3D26BF1281922F80019CFDE /* GifResponse.swift in Sources */,
 				E3D26BE62818D73E0019CFDE /* SearchViewController.swift in Sources */,
+				E3D26BF32819612B0019CFDE /* SearchItemCell.swift in Sources */,
 				E3D26BCD2818D62C0019CFDE /* AppDelegate.swift in Sources */,
 				E3D26BE82818D7540019CFDE /* SearchViewModel.swift in Sources */,
 				E3D26BEC281917F60019CFDE /* API.swift in Sources */,
+				E3D26BF8281967290019CFDE /* NSObject+ClassName.swift in Sources */,
 				E3D26BCF2818D62C0019CFDE /* SceneDelegate.swift in Sources */,
 				E3D26BEE2819185F0019CFDE /* APITarget.swift in Sources */,
 			);

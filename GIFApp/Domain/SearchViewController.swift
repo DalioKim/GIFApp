@@ -15,6 +15,7 @@ class SearchViewController: UIViewController {
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(SearchItemCell.self, forCellWithReuseIdentifier: SearchItemCell.className)
         return collectionView
     }()
     
@@ -39,6 +40,10 @@ class SearchViewController: UIViewController {
     }
     
     private func setupViews() {
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+
         view.addSubview(searchBar)
         view.addSubview(collectionView)
         
@@ -78,5 +83,24 @@ extension SearchViewController: UISearchBarDelegate {
 extension SearchViewController: SearchViewModelDelegate {
     func didLoadData() {
         print("debug: \(self.viewModel.cellModels)")
+        collectionView.reloadData()
+    }
+}
+
+extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.viewModel.cellModels.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchItemCell.className, for: indexPath) as? SearchItemCell else { fatalError() }
+        cell.bind(viewModel.cellModels[indexPath.item])
+        return cell
+    }
+}
+
+extension SearchViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 200, height: 200)
     }
 }
