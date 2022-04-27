@@ -6,23 +6,20 @@
 //
 
 import Alamofire
+import Foundation
 
-class API {
-    static private let baseURL = "https://api.giphy.com/v1/gifs/search?"
-    
-    static func search() {
-        let param: Parameters = ["api_key": "cq4rncLej0srZAZYS8yP3o28AyEHiK7f", "q": "war", "limit": 4]
-        
-        Alamofire.request(baseURL, method: .get, parameters: param, encoding: URLEncoding.queryString).responseJSON() { response in
+class API {        
+    static func search(query: String, completion: @escaping (Result<GifResponse>) -> Void) {
+        let apiTarget = APITarget.search(query: query)
+        Alamofire.request(apiTarget.apiURL, method: .get, parameters: apiTarget.task, encoding: URLEncoding.queryString).responseJSON() { response in
             switch response.result {
-            case .success(let data):
-                let result = response.data!
-                let test = try? JSONDecoder().decode(GifResponse.self, from: response.data!)
-                print("네트워크 test\(test)")
-                break
+            case .success(_):
+                guard let result = response.data, let content = try? JSONDecoder().decode(GifResponse.self, from: result) else {
+                    fatalError()
+                }
+                completion(.success(content))
             case .failure(let error):
-                print("네트워크: 실패 \(error)")
-                break
+                completion(.failure(error))
             }
         }
     }

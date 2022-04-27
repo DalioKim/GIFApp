@@ -11,10 +11,9 @@ import Alamofire
 protocol TargetType {
     var baseURL: URL { get }
     var path: String { get }
+    var apiURL: URL { get }
     var method: HTTPMethod { get }
     var task: Parameters { get }
-//    var headers: [String: String]? { get }
-    var endPoint: URLRequest? { get }
 }
 
 enum APITarget {
@@ -22,8 +21,7 @@ enum APITarget {
 }
 
 extension APITarget {
-    static private let clientId = "TWoWW_E7wbQRF4USjpy9"
-    static private let clientKey = "Q0kcELtfaA"
+    static private let clientKey = "cq4rncLej0srZAZYS8yP3o28AyEHiK7f"
 }
 
 extension APITarget: TargetType {
@@ -34,7 +32,7 @@ extension APITarget: TargetType {
     var path: String {
         switch self {
         case .search:
-            return "/v1/gifs/searchn"
+            return "/v1/gifs/search"
         }
     }
     
@@ -48,20 +46,11 @@ extension APITarget: TargetType {
     var task: Parameters {
         switch self {
         case .search(let query):
-            return ["api_key": query, "q": query, "limit": 25, "offset": 0, "rating": "g", "lang": "en"]
+            return ["api_key": APITarget.clientKey, "q": query, "limit": 4]
         }
     }
     
-    var endPoint: URLRequest? {
-        var request = URLRequest(url: URL(string: baseURL.absoluteString + path) ?? URL(fileURLWithPath: ""))
-        request.httpMethod = method.rawValue
-        return try? URLEncoding.queryString.encode(request, with: task)
+    var apiURL: URL {
+        return URL(string: baseURL.absoluteString + path) ?? URL(fileURLWithPath: "")
     }
-    
-//    var headers: [String: String]? {
-//        switch self {
-//        case .search:
-//            return
-//        }
-//    }
 }
