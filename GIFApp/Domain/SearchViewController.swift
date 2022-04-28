@@ -10,11 +10,8 @@ import UIKit
 class SearchViewController: UIViewController {
     private let searchBar = UISearchBar()
     
-    private let collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    private lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: compositionalLayout())
         collectionView.register(SearchItemCell.self, forCellWithReuseIdentifier: SearchItemCell.className)
         return collectionView
     }()
@@ -33,34 +30,33 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupViews()
         bindSearchBar()
         bindViewModel()
     }
     
     private func setupViews() {
-        
         collectionView.delegate = self
         collectionView.dataSource = self
-
+        
         view.addSubview(searchBar)
         view.addSubview(collectionView)
         
         searchBar.translatesAutoresizingMaskIntoConstraints = false
-         NSLayoutConstraint.activate([
+        NSLayoutConstraint.activate([
             searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 14),
             searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -14),
             searchBar.widthAnchor.constraint(equalToConstant: view.bounds.width - 28),
             searchBar.heightAnchor.constraint(equalToConstant: 30)
-         ])
+        ])
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-         NSLayoutConstraint.activate([
+        NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 14),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -14),
             collectionView.widthAnchor.constraint(equalToConstant: view.bounds.width - 28),
             collectionView.heightAnchor.constraint(equalToConstant: 300)
-         ])
+        ])
     }
     
     private func bindSearchBar() {
@@ -70,6 +66,63 @@ class SearchViewController: UIViewController {
     
     private func bindViewModel() {
         self.viewModel.delegate = self
+    }
+    
+    func compositionalLayout() -> UICollectionViewLayout {
+        let mainItem = NSCollectionLayoutItem(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1/2),
+                heightDimension: .fractionalHeight(1.0)))
+        
+        mainItem.contentInsets = NSDirectionalEdgeInsets(
+            top: 2,
+            leading: 2,
+            bottom: 2,
+            trailing: 2)
+        
+        let pairItem = NSCollectionLayoutItem(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .fractionalHeight(0.5)))
+        
+        pairItem.contentInsets = NSDirectionalEdgeInsets(
+            top: 2,
+            leading: 2,
+            bottom: 2,
+            trailing: 2)
+        
+        let trailingGroup = NSCollectionLayoutGroup.vertical(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1/2),
+                heightDimension: .fractionalHeight(1.0)),
+            subitem: pairItem,
+            count: 2)
+        
+        let mainGroup = NSCollectionLayoutGroup.horizontal(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .fractionalWidth(1/2)),
+            subitems: [mainItem, trailingGroup])
+        
+        let mainReversedGroup = NSCollectionLayoutGroup.horizontal(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .fractionalWidth(1/2)),
+            subitems: [trailingGroup, mainItem])
+        
+        let nestedGroup = NSCollectionLayoutGroup.vertical(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .fractionalWidth(2/1)),
+            subitems: [
+                mainGroup,
+                mainReversedGroup
+            ]
+        )
+        
+        let section = NSCollectionLayoutSection(group: nestedGroup)
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
     }
 }
 
@@ -82,7 +135,6 @@ extension SearchViewController: UISearchBarDelegate {
 
 extension SearchViewController: SearchViewModelDelegate {
     func didLoadData() {
-        print("debug: \(self.viewModel.cellModels)")
         collectionView.reloadData()
     }
 }
@@ -96,6 +148,11 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchItemCell.className, for: indexPath) as? SearchItemCell else { fatalError() }
         cell.bind(viewModel.cellModels[indexPath.item])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchItemCell.className, for: indexPath) as? SearchItemCell else { fatalError() }
+        cell.gifImageView.image = nil
     }
 }
 

@@ -46,7 +46,7 @@ extension APITarget: TargetType {
     var task: Parameters {
         switch self {
         case .search(let query):
-            return ["api_key": APITarget.clientKey, "q": query, "limit": 4]
+            return ["api_key": APITarget.clientKey, "q": query, "limit": 20]
         }
     }
     
