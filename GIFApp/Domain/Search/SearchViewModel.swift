@@ -59,7 +59,7 @@ extension DefaultSearchViewModel {
             switch result {
             case .success(let result):
                 let list = result.data.map {
-                    SearchItemCellModel(parentViewModel: self, model: $0.images)
+                    SearchItemCellModel(parentViewModel: self, model: $0)
                 }
                 list.map {
                     self?.cellModels.append($0)

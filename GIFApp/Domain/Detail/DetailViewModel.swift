@@ -17,4 +17,16 @@ extension DetailViewModel {
     var path: String? {
         model?.path
     }
+    
+    var hash: String? {
+        model?.hash
+    }
+    
+    var bannerURL: String? {
+        model?.bannerURL
+    }
+    
+    var userName: String? {
+        model?.userName
+    }
 }

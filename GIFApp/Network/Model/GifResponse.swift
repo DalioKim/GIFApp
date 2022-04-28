@@ -21,26 +21,32 @@ struct GifResponse: Decodable {
     
     struct ImageData: Decodable {
         let images: Image?
-        
+        let user: User?
+
         enum Keys: String, CodingKey {
             case images
+            case user
         }
         
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: Keys.self)
             images = try container.decodeIfPresent(Image.self, forKey: .images)
+            user = try container.decodeIfPresent(User.self, forKey: .user)
         }
         
         struct Image: Decodable {
             let original: Original?
+            let hash: String?
             
             enum Keys: String, CodingKey {
                 case original
+                case hash
             }
             
             init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: Keys.self)
                 original = try container.decodeIfPresent(Original.self, forKey: .original)
+                hash = try container.decodeIfPresent(String.self, forKey: .hash)
             }
             
             struct Original: Decodable {
@@ -54,6 +60,22 @@ struct GifResponse: Decodable {
                     let container = try decoder.container(keyedBy: Keys.self)
                     url = try container.decodeIfPresent(String.self, forKey: .url)
                 }
+            }
+        }
+        
+        struct User: Decodable {
+            let bannerURL: String?
+            let userName: String?
+            
+            enum Keys: String, CodingKey {
+                case banner_url
+                case username
+            }
+            
+            init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: Keys.self)
+                bannerURL = try container.decodeIfPresent(String.self, forKey: .banner_url)
+                userName = try container.decodeIfPresent(String.self, forKey: .username)
             }
         }
     }
