@@ -15,7 +15,6 @@ class SearchItemCell: UICollectionViewCell {
         let stackView = UIStackView(arrangedSubviews: [gifImageView])
         stackView.axis = .horizontal
         stackView.alignment = .center
-        
         return stackView
     }()
     
@@ -41,7 +40,7 @@ class SearchItemCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.gifImageView.image = nil
+        gifImageView.image = nil
     }
     
     private func setupViews() {
@@ -67,7 +66,7 @@ class SearchItemCell: UICollectionViewCell {
     
     private func setGifImage() {
         guard let path = model?.path else { return }
-        self.gifImageView.image = UIImage().gifImageWithURL(gifUrl: path)
+        gifImageView.image = UIImage().gifImageWithURL(gifUrl: path)
     }
 }
 

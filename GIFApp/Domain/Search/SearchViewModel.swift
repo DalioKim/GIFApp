@@ -5,11 +5,13 @@
 //  Created by 김동현 on 2022/04/27.
 //
 
+import Foundation
 
 protocol SearchViewModelInput {
     func loadMore()
     func refresh()
     func search(_ query: String)
+    func didSelect(at indexPath: IndexPath)
 }
 
 protocol SearchViewModelOutput {
@@ -21,6 +23,7 @@ protocol SearchViewModel: SearchViewModelInput, SearchViewModelOutput {}
 
 protocol SearchViewModelDelegate: AnyObject {
     func didLoadData()
+    func didSelectItem(_ ViewAction: DefaultSearchViewModel.ViewAction)
 }
 
 final class DefaultSearchViewModel: SearchViewModel {
@@ -30,7 +33,7 @@ final class DefaultSearchViewModel: SearchViewModel {
     
     enum DefaultMovieListViewAction {
         case popViewController
-        case showDetail
+        case showDetail(model: SearchItemCellModel)
     }
     
     // MARK: - paging
@@ -47,15 +50,19 @@ extension DefaultSearchViewModel {
     
     func refresh() {}
     
+    func didSelect(at indexPath: IndexPath) {
+        delegate?.didSelectItem(ViewAction.showDetail(model: cellModels[indexPath.item]))
+    }
+    
     func search(_ query: String) {
         API.search(query: query) { [weak self] result in
             switch result {
             case .success(let result):
                 let list = result.data.map {
-                    SearchItemCellModel(parentViewModel: self, model: $0.images)
+                    SearchItemCellModel(parentViewModel: self, model: $0)
                 }
                 list.map {
-                self?.cellModels.append($0)
+                    self?.cellModels.append($0)
                 }
                 self?.delegate?.didLoadData()
             case .failure(_):

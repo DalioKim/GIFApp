@@ -20,6 +20,8 @@
 		E3D26BF32819612B0019CFDE /* SearchItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D26BF22819612B0019CFDE /* SearchItemCell.swift */; };
 		E3D26BF8281967290019CFDE /* NSObject+ClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D26BF7281967290019CFDE /* NSObject+ClassName.swift */; };
 		E3D26BFB28198BB10019CFDE /* UIImageView+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D26BFA28198BB10019CFDE /* UIImageView+Gif.swift */; };
+		E3D26BFF281AD76A0019CFDE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D26BFE281AD76A0019CFDE /* DetailViewController.swift */; };
+		E3D26C01281AD78B0019CFDE /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D26C00281AD78B0019CFDE /* DetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		E3D26BF22819612B0019CFDE /* SearchItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemCell.swift; sourceTree = "<group>"; };
 		E3D26BF7281967290019CFDE /* NSObject+ClassName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+ClassName.swift"; sourceTree = "<group>"; };
 		E3D26BFA28198BB10019CFDE /* UIImageView+Gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Gif.swift"; sourceTree = "<group>"; };
+		E3D26BFE281AD76A0019CFDE /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		E3D26C00281AD78B0019CFDE /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,10 +126,8 @@
 		E3D26BE22818D6E90019CFDE /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				E3D26BE52818D73E0019CFDE /* SearchViewController.swift */,
-				E3D26BE72818D7540019CFDE /* SearchViewModel.swift */,
-				E3D26BE92818D76C0019CFDE /* SearchItemCellModel.swift */,
-				E3D26BF22819612B0019CFDE /* SearchItemCell.swift */,
+				E3D26BFC281AD73F0019CFDE /* Search */,
+				E3D26BFD281AD74A0019CFDE /* Detail */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -187,6 +189,26 @@
 				E3D26BFA28198BB10019CFDE /* UIImageView+Gif.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		E3D26BFC281AD73F0019CFDE /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				E3D26BE52818D73E0019CFDE /* SearchViewController.swift */,
+				E3D26BE72818D7540019CFDE /* SearchViewModel.swift */,
+				E3D26BE92818D76C0019CFDE /* SearchItemCellModel.swift */,
+				E3D26BF22819612B0019CFDE /* SearchItemCell.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		E3D26BFD281AD74A0019CFDE /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				E3D26BFE281AD76A0019CFDE /* DetailViewController.swift */,
+				E3D26C00281AD78B0019CFDE /* DetailViewModel.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,11 +327,13 @@
 				E3D26BEA2818D76C0019CFDE /* SearchItemCellModel.swift in Sources */,
 				E3D26BF1281922F80019CFDE /* GifResponse.swift in Sources */,
 				E3D26BE62818D73E0019CFDE /* SearchViewController.swift in Sources */,
+				E3D26BFF281AD76A0019CFDE /* DetailViewController.swift in Sources */,
 				E3D26BF32819612B0019CFDE /* SearchItemCell.swift in Sources */,
 				E3D26BCD2818D62C0019CFDE /* AppDelegate.swift in Sources */,
 				E3D26BE82818D7540019CFDE /* SearchViewModel.swift in Sources */,
 				E3D26BEC281917F60019CFDE /* API.swift in Sources */,
 				E3D26BFB28198BB10019CFDE /* UIImageView+Gif.swift in Sources */,
+				E3D26C01281AD78B0019CFDE /* DetailViewModel.swift in Sources */,
 				E3D26BF8281967290019CFDE /* NSObject+ClassName.swift in Sources */,
 				E3D26BCF2818D62C0019CFDE /* SceneDelegate.swift in Sources */,
 				E3D26BEE2819185F0019CFDE /* APITarget.swift in Sources */,

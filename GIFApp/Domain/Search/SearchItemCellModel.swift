@@ -6,7 +6,7 @@
 //
 
 class SearchItemCellModel {
-    typealias Content = GifResponse.ImageData.Image
+    typealias Content = GifResponse.ImageData
     private let model: Content?
     private weak var parentViewModel: DefaultSearchViewModel?
     
@@ -18,6 +18,18 @@ class SearchItemCellModel {
 
 extension SearchItemCellModel {
     var path: String? {
-        model?.original?.url
+        model?.images?.original?.url
+    }
+    
+    var hash: String? {
+        model?.images?.hash
+    }
+    
+    var bannerURL: String? {
+        model?.user?.bannerURL
+    }
+
+    var userName: String? {
+        model?.user?.userName
     }
 }
