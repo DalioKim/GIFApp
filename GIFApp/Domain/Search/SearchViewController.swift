@@ -53,9 +53,9 @@ class SearchViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 14),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -14),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -14),
-            collectionView.widthAnchor.constraint(equalToConstant: view.bounds.width - 28),
-            collectionView.heightAnchor.constraint(equalToConstant: 300)
+            collectionView.widthAnchor.constraint(equalToConstant: view.bounds.width - 28)
         ])
     }
     

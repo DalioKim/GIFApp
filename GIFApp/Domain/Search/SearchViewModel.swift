@@ -58,11 +58,8 @@ extension DefaultSearchViewModel {
         API.search(query: query) { [weak self] result in
             switch result {
             case .success(let result):
-                let list = result.data.map {
-                    SearchItemCellModel(parentViewModel: self, model: $0)
-                }
-                list.map {
-                    self?.cellModels.append($0)
+                result.data.forEach {
+                    self?.cellModels.append(SearchItemCellModel(parentViewModel: self, model: $0))
                 }
                 self?.delegate?.didLoadData()
             case .failure(_):
