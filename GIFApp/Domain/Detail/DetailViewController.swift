@@ -42,19 +42,21 @@ class DetailViewController: UIViewController {
     
     private lazy var favoriteButton: UIButton = {
         let button = UIButton()
-        let uiImage = isFavorite ? UIImage(named: "favorite") : UIImage(named: "unFavorite")
+        let uiImage = viewModel.isFavorite(hashId: hashId) ? UIImage(named: "favorite") : UIImage(named: "unFavorite")
         button.setImage(uiImage, for: .normal)
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
         button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        button.addTarget(self, action: #selector(didSetFavorite), for: .touchUpInside)
         return button
     }()
     
-    private var viewModel: DetailViewModel
-    private var isFavorite = false
+    private var viewModel: DefaultDetailViewModel
+    private let hashId: String
     
-    init(viewModel: DetailViewModel) {
+    init(viewModel: DefaultDetailViewModel) {
         self.viewModel = viewModel
+        hashId = viewModel.hash ?? ""
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder: NSCoder) {
@@ -99,6 +101,17 @@ class DetailViewController: UIViewController {
             DispatchQueue.main.async { [weak self] in
                 self?.bannerImageView.image = UIImage(data: data)
             }
+        }
+    }
+    
+    @objc func didSetFavorite() {
+        if viewModel.isFavorite(hashId: hashId) {
+            viewModel.removeFavorite(hashId: hashId)
+            favoriteButton.setImage(UIImage(named: "unFavorite"), for: .normal)
+
+        } else {
+            viewModel.addFavorite(hashId: hashId)
+            favoriteButton.setImage(UIImage(named: "favorite"), for: .normal)
         }
     }
 }

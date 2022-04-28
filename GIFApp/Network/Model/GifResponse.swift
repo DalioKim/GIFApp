@@ -36,29 +36,29 @@ struct GifResponse: Decodable {
         
         struct Image: Decodable {
             let original: Original?
-            let hash: String?
             
             enum Keys: String, CodingKey {
                 case original
-                case hash
             }
             
             init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: Keys.self)
                 original = try container.decodeIfPresent(Original.self, forKey: .original)
-                hash = try container.decodeIfPresent(String.self, forKey: .hash)
             }
             
             struct Original: Decodable {
                 let url: String?
-                
+                let hash: String?
+
                 enum Keys: String, CodingKey {
                     case url
+                    case hash
                 }
                 
                 init(from decoder: Decoder) throws {
                     let container = try decoder.container(keyedBy: Keys.self)
                     url = try container.decodeIfPresent(String.self, forKey: .url)
+                    hash = try container.decodeIfPresent(String.self, forKey: .hash)
                 }
             }
         }
