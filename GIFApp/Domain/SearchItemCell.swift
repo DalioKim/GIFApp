@@ -19,7 +19,7 @@ class SearchItemCell: UICollectionViewCell {
         return stackView
     }()
     
-    private let gifImageView: UIImageView = {
+    let gifImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -41,6 +41,7 @@ class SearchItemCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        self.gifImageView.image = nil
     }
     
     private func setupViews() {
@@ -54,13 +55,15 @@ class SearchItemCell: UICollectionViewCell {
         ])
     }
     private func setGifImage() {
-        guard let path = model?.path, let imageURL = URL(string: path) else { return }
-        DispatchQueue.global().async {
-            guard let data = try? Data(contentsOf: imageURL) else { return }
-            DispatchQueue.main.async { [weak self] in
-                self?.gifImageView.image = UIImage(data: data)
-            }
-        }
+        guard let path = model?.path else { return }
+        self.gifImageView.image = UIImage().gifImageWithURL(gifUrl: path)
+        //        guard let path = model?.path, let imageURL = URL(string: path) else { return }
+        //        DispatchQueue.global().async {
+        //            guard let data = try? Data(contentsOf: imageURL) else { return }
+        //            DispatchQueue.main.async { [weak self] in
+        //                self?.gifImageView.image = UIImage(data: data)
+        //            }
+        //        }
     }
 }
 
