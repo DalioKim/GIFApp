@@ -22,7 +22,7 @@ extension SearchItemCellModel {
     }
     
     var hash: String? {
-        model?.images?.hash
+        model?.images?.original?.hash
     }
     
     var bannerURL: String? {
