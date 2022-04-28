@@ -137,6 +137,15 @@ extension SearchViewController: SearchViewModelDelegate {
     func didLoadData() {
         collectionView.reloadData()
     }
+    
+    func didSelectItem(_ ViewAction: DefaultSearchViewModel.ViewAction) {
+        switch ViewAction {
+        case .showDetail(let model):
+            self.navigationController?.pushViewController(DetailViewController(viewModel: DetailViewModel(model: model)), animated: false)
+        case.popViewController:
+            break
+        }
+    }
 }
 
 extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -153,6 +162,10 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchItemCell.className, for: indexPath) as? SearchItemCell else { fatalError() }
         cell.gifImageView.image = nil
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.didSelect(at: indexPath)
     }
 }
 
