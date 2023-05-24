@@ -1,14 +1,35 @@
 //
-//  UIImageView+Gif.swift
+//  GIFContent.swift
 //  GIFApp
 //
-//  Created by 김동현 on 2022/04/27.
+//  Created by 김동현 on 2023/05/24.
 //
 
+import Foundation
 import UIKit
 
-extension UIImage {
-    func gifImageWithURL(gifUrl:String) -> UIImage? {
+struct GIFContent: Content {
+    var id: String?
+    var path: String?
+    var owner: String?
+    var bannerPath: String?
+    
+    var convertedGif: UIImage? {
+        return gifImageWithURL(self.path ?? "")
+    }
+}
+
+extension GIFContent {
+    init(_ item: GifResponse.ImageData?) {
+        self.init(id: item?.images?.original?.hash,
+                  path: item?.images?.original?.url,
+                  owner: item?.user?.userName,
+                  bannerPath: item?.user?.bannerURL)
+    }
+}
+
+extension GIFContent {
+    private func gifImageWithURL(_ gifUrl:String) -> UIImage? {
         guard let bundleURL = NSURL(string: gifUrl)
         else {
             print("image named \"\(gifUrl)\" doesn't exist")
@@ -22,7 +43,7 @@ extension UIImage {
         return gifImageWithData(data: imageData)
     }
     
-    func gifImageWithData(data: NSData) -> UIImage? {
+    private func gifImageWithData(data: NSData) -> UIImage? {
         guard let source = CGImageSourceCreateWithData(data, nil) else {
             print("image doesn't exist")
             return nil
@@ -30,7 +51,7 @@ extension UIImage {
         
         return self.animatedImageWithSource(source: source)
     }
-    func animatedImageWithSource(source: CGImageSource) -> UIImage? {
+    private func animatedImageWithSource(source: CGImageSource) -> UIImage? {
         let count = CGImageSourceGetCount(source)
         var images = [CGImage]()
         var delays = [Int]()
@@ -73,7 +94,7 @@ extension UIImage {
         return animation
     }
     
-    func delayForImageAtIndex(index: Int, source: CGImageSource!) -> Double {
+    private func delayForImageAtIndex(index: Int, source: CGImageSource!) -> Double {
         var delay = 0.1
         
         let cfProperties = CGImageSourceCopyPropertiesAtIndex(source, index, nil)
@@ -94,7 +115,7 @@ extension UIImage {
         return delay
     }
     
-    func gcdForArray(array: Array<Int>) -> Int {
+    private func gcdForArray(array: Array<Int>) -> Int {
         if array.isEmpty {
             return 1
         }
@@ -108,7 +129,7 @@ extension UIImage {
         return gcd
     }
     
-    func gcdForPair(a: Int?, _ b: Int?) -> Int {
+    private func gcdForPair(a: Int?, _ b: Int?) -> Int {
         var a = a
         var b = b
         if b == nil || a == nil {
@@ -120,17 +141,17 @@ extension UIImage {
                 return 0
             }
         }
-
+        
         if a! < b! {
             let c = a!
             a = b!
             b = c
         }
-
+        
         var rest: Int
         while true {
             rest = a! % b!
-
+            
             if rest == 0 {
                 return b!
             } else {

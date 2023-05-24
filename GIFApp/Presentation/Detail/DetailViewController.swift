@@ -56,7 +56,7 @@ class DetailViewController: UIViewController {
     
     init(viewModel: DefaultDetailViewModel) {
         self.viewModel = viewModel
-        hashId = viewModel.hash ?? ""
+        hashId = viewModel.content.id ?? ""
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder: NSCoder) {
@@ -91,11 +91,10 @@ class DetailViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        userLabel.text = viewModel.userName
+        userLabel.text = viewModel.content.owner
+        gifImageView.image = viewModel.content.convertedGif
         
-        guard let gifPath = viewModel.path else { return }
-        gifImageView.image = UIImage().gifImageWithURL(gifUrl: gifPath)
-        guard let bannerPath = viewModel.bannerURL, let bannerURL = URL(string: bannerPath) else { return }
+        guard let bannerPath = viewModel.content.bannerPath, let bannerURL = URL(string: bannerPath) else { return }
         DispatchQueue.global().async {
             guard let data = try? Data(contentsOf: bannerURL) else { return }
             DispatchQueue.main.async { [weak self] in

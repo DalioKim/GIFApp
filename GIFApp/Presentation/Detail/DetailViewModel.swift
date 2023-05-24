@@ -20,28 +20,10 @@ protocol DetailViewModel: DetailViewModelInput, DetailViewModelOutput {}
 
 
 class DefaultDetailViewModel: DetailViewModel {
-    private let model: SearchItemCellModel?
-    
-    init(model: SearchItemCellModel?) {
-        self.model = model
-    }
-}
+    let content: GIFContent
 
-extension DefaultDetailViewModel {
-    var path: String? {
-        model?.path
-    }
-    
-    var hash: String? {
-        model?.hash
-    }
-    
-    var bannerURL: String? {
-        model?.bannerURL
-    }
-    
-    var userName: String? {
-        model?.userName
+    init(content: GIFContent) {
+        self.content = content
     }
 }
 

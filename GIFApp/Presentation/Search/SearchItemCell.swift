@@ -53,20 +53,9 @@ class SearchItemCell: UICollectionViewCell {
             stackView.heightAnchor.constraint(equalToConstant: contentView.bounds.height - 28)
         ])
     }
-    
-    private func setImage() {
-        guard let path = model?.path, let imageURL = URL(string: path) else { return }
-        DispatchQueue.global().async {
-            guard let data = try? Data(contentsOf: imageURL) else { return }
-            DispatchQueue.main.async { [weak self] in
-                self?.gifImageView.image = UIImage(data: data)
-            }
-        }
-    }
-    
+        
     private func setGifImage() {
-        guard let path = model?.path else { return }
-        gifImageView.image = UIImage().gifImageWithURL(gifUrl: path)
+        gifImageView.image = model?.gifImage
     }
 }
 
