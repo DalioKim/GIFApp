@@ -141,7 +141,9 @@ extension SearchViewController: SearchViewModelDelegate {
     func didSelectItem(_ ViewAction: DefaultSearchViewModel.ViewAction) {
         switch ViewAction {
         case .showDetail(let model):
-            self.navigationController?.pushViewController(DetailViewController(viewModel: DefaultDetailViewModel(model: model)), animated: false)
+            guard let content = model.content else { return }
+            self.navigationController?.pushViewController(DetailViewController(viewModel: DefaultDetailViewModel(content: content)), animated: false)
+            
         case.popViewController:
             break
         }

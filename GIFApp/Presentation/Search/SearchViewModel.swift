@@ -59,7 +59,7 @@ extension DefaultSearchViewModel {
             switch result {
             case .success(let result):
                 result.data.forEach {
-                    self?.cellModels.append(SearchItemCellModel(parentViewModel: self, model: $0))
+                    self?.cellModels.append(SearchItemCellModel(parentViewModel: self, item: $0))
                 }
                 self?.delegate?.didLoadData()
             case .failure(_):
