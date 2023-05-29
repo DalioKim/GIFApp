@@ -8,12 +8,12 @@
 import UIKit
 
 class SearchItemCellModel {
-    let content: GIFContent?
+    let content: GIFItem?
     private weak var parentViewModel: DefaultSearchViewModel?
     
     init(parentViewModel: DefaultSearchViewModel?, item: GifResponse.ImageData?) {
         self.parentViewModel = parentViewModel
-        self.content = GIFContent(item)
+        self.content = GIFItem(item)
     }
 }
 

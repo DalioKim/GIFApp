@@ -20,9 +20,9 @@ protocol DetailViewModel: DetailViewModelInput, DetailViewModelOutput {}
 
 
 class DefaultDetailViewModel: DetailViewModel {
-    let content: GIFContent
+    let content: GIFItem
 
-    init(content: GIFContent) {
+    init(content: GIFItem) {
         self.content = content
     }
 }
