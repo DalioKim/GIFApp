@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		055E683D9D3DF948B0787A7B /* Pods_GIFApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04396440F3261D8621421BB8 /* Pods_GIFApp.framework */; };
 		E33A97352A24D2FE00984771 /* GIFContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33A97342A24D2FE00984771 /* GIFContent.swift */; };
+		E33A97382A24D67D00984771 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33A97372A24D67D00984771 /* User.swift */; };
+		E33A973A2A24DA1A00984771 /* DefaultUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33A97392A24DA1A00984771 /* DefaultUser.swift */; };
+		E33A97402A2628A600984771 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33A973F2A2628A600984771 /* Order.swift */; };
+		E33A97422A262C0200984771 /* ImageOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33A97412A262C0200984771 /* ImageOrder.swift */; };
 		E3C1CD6C2A1E34D900D8B7DA /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C1CD6B2A1E34D900D8B7DA /* Content.swift */; };
 		E3C1CD6E2A1E35D700D8B7DA /* GIFItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C1CD6D2A1E35D700D8B7DA /* GIFItem.swift */; };
 		E3D26BCD2818D62C0019CFDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D26BCC2818D62C0019CFDE /* AppDelegate.swift */; };
@@ -31,6 +35,10 @@
 		2F6E36CF18099BD2F4BA7AAA /* Pods-GIFApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GIFApp.debug.xcconfig"; path = "Target Support Files/Pods-GIFApp/Pods-GIFApp.debug.xcconfig"; sourceTree = "<group>"; };
 		4CD109224D19BD6DEA4F126E /* Pods-GIFApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GIFApp.release.xcconfig"; path = "Target Support Files/Pods-GIFApp/Pods-GIFApp.release.xcconfig"; sourceTree = "<group>"; };
 		E33A97342A24D2FE00984771 /* GIFContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFContent.swift; sourceTree = "<group>"; };
+		E33A97372A24D67D00984771 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E33A97392A24DA1A00984771 /* DefaultUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultUser.swift; sourceTree = "<group>"; };
+		E33A973F2A2628A600984771 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		E33A97412A262C0200984771 /* ImageOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOrder.swift; sourceTree = "<group>"; };
 		E3C1CD6B2A1E34D900D8B7DA /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		E3C1CD6D2A1E35D700D8B7DA /* GIFItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFItem.swift; sourceTree = "<group>"; };
 		E3D26BC92818D62C0019CFDE /* GIFApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GIFApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +85,24 @@
 				4CD109224D19BD6DEA4F126E /* Pods-GIFApp.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E33A97362A24D65A00984771 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				E33A97372A24D67D00984771 /* User.swift */,
+				E33A97392A24DA1A00984771 /* DefaultUser.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		E33A973E2A24DE1200984771 /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				E33A973F2A2628A600984771 /* Order.swift */,
+				E33A97412A262C0200984771 /* ImageOrder.swift */,
+			);
+			path = Order;
 			sourceTree = "<group>";
 		};
 		E3C1CD692A1E331200D8B7DA /* Content */ = {
@@ -142,6 +168,8 @@
 		E3D26BE22818D6E90019CFDE /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				E33A973E2A24DE1200984771 /* Order */,
+				E33A97362A24D65A00984771 /* User */,
 				E3C1CD692A1E331200D8B7DA /* Content */,
 			);
 			path = Domain;
@@ -338,13 +366,17 @@
 				E3D26BCD2818D62C0019CFDE /* AppDelegate.swift in Sources */,
 				E3D26BE82818D7540019CFDE /* SearchViewModel.swift in Sources */,
 				E3D26BEC281917F60019CFDE /* API.swift in Sources */,
+				E33A973A2A24DA1A00984771 /* DefaultUser.swift in Sources */,
 				E3C1CD6C2A1E34D900D8B7DA /* Content.swift in Sources */,
 				E3D26C01281AD78B0019CFDE /* DetailViewModel.swift in Sources */,
 				E3D26BF8281967290019CFDE /* NSObject+ClassName.swift in Sources */,
+				E33A97402A2628A600984771 /* Order.swift in Sources */,
 				E3D26BCF2818D62C0019CFDE /* SceneDelegate.swift in Sources */,
+				E33A97422A262C0200984771 /* ImageOrder.swift in Sources */,
 				E3C1CD6E2A1E35D700D8B7DA /* GIFItem.swift in Sources */,
 				E33A97352A24D2FE00984771 /* GIFContent.swift in Sources */,
 				E3D26BEE2819185F0019CFDE /* APITarget.swift in Sources */,
+				E33A97382A24D67D00984771 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
