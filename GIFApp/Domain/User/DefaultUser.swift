@@ -7,7 +7,10 @@
 
 import Foundation
 
-struct GeneralUser: User {
+struct DefaultUser: User {
+    var cach: Int
+    var ownedList: [String]
+    var OrderRecords: [ImageOrder]
     var nickName: String?
     var email: String?
 }
