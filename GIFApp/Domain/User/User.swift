@@ -14,4 +14,13 @@ protocol User {
     var email: String? {
         get set
     }
+    var cach: Int {
+        get set
+    }
+    var ownedList: [String] {
+        get set
+    }
+    var OrderRecords: [ImageOrder] {
+        get set
+    }
 }
