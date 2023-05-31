@@ -13,6 +13,10 @@
 		E33A973A2A24DA1A00984771 /* DefaultUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33A97392A24DA1A00984771 /* DefaultUser.swift */; };
 		E33A97402A2628A600984771 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33A973F2A2628A600984771 /* Order.swift */; };
 		E33A97422A262C0200984771 /* ImageOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33A97412A262C0200984771 /* ImageOrder.swift */; };
+		E33A97442A2630C400984771 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E33A97432A2630C400984771 /* GoogleService-Info.plist */; };
+		E33A97462A27258A00984771 /* FirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33A97452A27258A00984771 /* FirebaseAPI.swift */; };
+		E33A97482A27264200984771 /* FirebaseAPI+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33A97472A27264200984771 /* FirebaseAPI+Auth.swift */; };
+		E33A974A2A27270700984771 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33A97492A27270700984771 /* AuthResponse.swift */; };
 		E3C1CD6C2A1E34D900D8B7DA /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C1CD6B2A1E34D900D8B7DA /* Content.swift */; };
 		E3C1CD6E2A1E35D700D8B7DA /* GIFItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C1CD6D2A1E35D700D8B7DA /* GIFItem.swift */; };
 		E3D26BCD2818D62C0019CFDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D26BCC2818D62C0019CFDE /* AppDelegate.swift */; };
@@ -39,6 +43,10 @@
 		E33A97392A24DA1A00984771 /* DefaultUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultUser.swift; sourceTree = "<group>"; };
 		E33A973F2A2628A600984771 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		E33A97412A262C0200984771 /* ImageOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOrder.swift; sourceTree = "<group>"; };
+		E33A97432A2630C400984771 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E33A97452A27258A00984771 /* FirebaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAPI.swift; sourceTree = "<group>"; };
+		E33A97472A27264200984771 /* FirebaseAPI+Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirebaseAPI+Auth.swift"; sourceTree = "<group>"; };
+		E33A97492A27270700984771 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		E3C1CD6B2A1E34D900D8B7DA /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		E3C1CD6D2A1E35D700D8B7DA /* GIFItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFItem.swift; sourceTree = "<group>"; };
 		E3D26BC92818D62C0019CFDE /* GIFApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GIFApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +155,7 @@
 			children = (
 				E3D26BCC2818D62C0019CFDE /* AppDelegate.swift */,
 				E3D26BDA2818D62F0019CFDE /* Info.plist */,
+				E33A97432A2630C400984771 /* GoogleService-Info.plist */,
 				E3D26BE02818D6D80019CFDE /* Application */,
 				E3D26BE32818D6EF0019CFDE /* Network */,
 				E3C1CD6A2A1E34A100D8B7DA /* Presentation */,
@@ -181,6 +190,8 @@
 				E3D26BEF281922E90019CFDE /* Model */,
 				E3D26BEB281917F60019CFDE /* API.swift */,
 				E3D26BED2819185F0019CFDE /* APITarget.swift */,
+				E33A97452A27258A00984771 /* FirebaseAPI.swift */,
+				E33A97472A27264200984771 /* FirebaseAPI+Auth.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -197,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				E3D26BF0281922F80019CFDE /* GifResponse.swift */,
+				E33A97492A27270700984771 /* AuthResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -306,6 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3D26BD62818D62F0019CFDE /* Assets.xcassets in Resources */,
+				E33A97442A2630C400984771 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,10 +374,12 @@
 				E3D26BEA2818D76C0019CFDE /* SearchItemCellModel.swift in Sources */,
 				E3D26BF1281922F80019CFDE /* GifResponse.swift in Sources */,
 				E3D26BE62818D73E0019CFDE /* SearchViewController.swift in Sources */,
+				E33A97462A27258A00984771 /* FirebaseAPI.swift in Sources */,
 				E3D26BFF281AD76A0019CFDE /* DetailViewController.swift in Sources */,
 				E3D26BF32819612B0019CFDE /* SearchItemCell.swift in Sources */,
 				E3D26BCD2818D62C0019CFDE /* AppDelegate.swift in Sources */,
 				E3D26BE82818D7540019CFDE /* SearchViewModel.swift in Sources */,
+				E33A974A2A27270700984771 /* AuthResponse.swift in Sources */,
 				E3D26BEC281917F60019CFDE /* API.swift in Sources */,
 				E33A973A2A24DA1A00984771 /* DefaultUser.swift in Sources */,
 				E3C1CD6C2A1E34D900D8B7DA /* Content.swift in Sources */,
@@ -376,6 +391,7 @@
 				E3C1CD6E2A1E35D700D8B7DA /* GIFItem.swift in Sources */,
 				E33A97352A24D2FE00984771 /* GIFContent.swift in Sources */,
 				E3D26BEE2819185F0019CFDE /* APITarget.swift in Sources */,
+				E33A97482A27264200984771 /* FirebaseAPI+Auth.swift in Sources */,
 				E33A97382A24D67D00984771 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

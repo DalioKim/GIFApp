@@ -6,6 +6,8 @@ target 'GIFApp' do
   use_frameworks!
 
   pod 'Alamofire', '4.7.3'  
+  pod 'FirebaseAuth'
+  pod 'RxSwift'
 
   # Pods for GIFApp
 
